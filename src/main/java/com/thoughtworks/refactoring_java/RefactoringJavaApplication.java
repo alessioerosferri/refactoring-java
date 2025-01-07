@@ -7,20 +7,35 @@ import java.util.Scanner;
 @SpringBootApplication
 public class RefactoringJavaApplication {
 
+	public static final String S = "Hello, %s!";
+	public static final String S1 = "Please enter your name: ";
+
 	public static void main(String[] args) {
-		// Create a Scanner object for user input
-		Scanner scanner = new Scanner(System.in);
+		Scanner s = getScanner();
 
-		// Prompt the user to enter their name
-		System.out.print("Please enter your name: ");
+		System.out.print(S1);
 
-		// Read the user's name
-		String nameOfUser = scanner.nextLine();
+		String n = doSomething(s);
 
-		// Print the greeting message
-		System.out.println("Hello, " + nameOfUser + "!");
+		String g = doSomeMore(n);
 
-		// Close the scanner
-		scanner.close();
+		System.out.println(g);
+
+		s.close();
+	}
+
+	private static String doSomeMore(String n) {
+		String g = String.format(S, n);
+		return g;
+	}
+
+	private static String doSomething(Scanner s) {
+		String n = s.nextLine();
+		return n;
+	}
+
+	private static Scanner getScanner() {
+		Scanner s = new Scanner(System.in);
+		return s;
 	}
 }
